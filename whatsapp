@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Link Generator</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen layout with flexbox */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .container {
+            text-align: center; /* Center text inside the container */
+            width: 100%;
+            max-width: 400px; /* Limit width for larger screens */
+            padding: 20px;
+            background-color: #fff; /* Add a white background for better contrast */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+        }
+
+        .logo {
+            margin-bottom: 20px; /* Space below logo */
+        }
+
+        .logo img {
+            width: 100px; /* Adjusted logo size */
+            height: auto;
+            margin: 0 auto; /* Center logo */
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px; /* Space below heading */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px; /* Space below input field */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Full width button for better usability on mobile */
+            font-size: 16px; /* Larger text for better readability */
+        }
+
+        button:hover {
+            background-color: #1da851; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png" alt="WhatsApp Logo" />
+        </div>
+        <h2>Open WhatsApp Chat</h2>
+        <label for="mobile">Enter Mobile Number (with country code):</label>
+        <input type="text" id="mobile" placeholder="+1234567890" aria-label="Mobile Number">
+        <button onclick="openWhatsApp()">Open WhatsApp</button>
+    </div>
+
+    <script>
+        function openWhatsApp() {
+            const mobile = document.getElementById('mobile').value.trim();
+            
+            // Basic validation
+            const isValidNumber = /^\+?\d{7,15}$/.test(mobile); // Allows numbers with optional '+' and length between 7-15 digits
+            
+            if (isValidNumber) {
+                const url = `https://wa.me/${mobile.replace(/\+/g, '')}`; // Remove '+' for URL compatibility
+                window.open(url, '_blank'); // Opens in a new tab
+            } else {
+                alert('Please enter a valid mobile number in international format (e.g., +1234567890).');
+            }
+        }
+    </script>
+</body>
+</html>
